@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bus.dto.BookingDTO;
 import com.bus.dto.BusSheetingDetailDTO;
 import com.bus.dto.SheetDTO;
 import com.bus.entity.BookingEntity;
@@ -77,5 +78,33 @@ public class BookingsService
 		return sheetMap;
 		
 	}
+
+	public BookingDTO saveOrUpdateBooking(BookingDTO bookingDTO,boolean update) 
+	{
+		BookingEntity bookingEntity = getEntity(bookingDTO,update);
+		bookingEntity = bookingsRepository.save(bookingEntity);
+		bookingDTO.setBookingId(bookingEntity.getBookingId());
+		
+		return bookingDTO;
+	}
+
+	private BookingEntity getEntity(BookingDTO bookingDTO,boolean update) 
+	{
+		BookingEntity bookingEntity = new BookingEntity();
+		bookingEntity.setBusID(bookingDTO.getBusID());
+		bookingEntity.setMobileNumber(bookingDTO.getMobileNumber());
+		bookingEntity.setName(bookingDTO.getName());
+		bookingEntity.setSheetNo(bookingDTO.getSheetNo());
+		bookingEntity.setStatus(bookingDTO.getStatus());
+		
+		if(update)
+		{
+			bookingEntity.setBookingId(bookingDTO.getBookingId());
+		}
+		
+		return bookingEntity;
+	}
+	
+	
 	
 }

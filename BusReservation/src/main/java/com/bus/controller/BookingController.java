@@ -2,11 +2,13 @@ package com.bus.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bus.dto.BookingDTO;
 import com.bus.dto.BusSheetingDetailDTO;
 import com.bus.service.BookingsService;
 
@@ -26,20 +28,28 @@ public class BookingController
 		
 		if(busID == null || busID.equals(0))
 		{
-			throw new Exception("Invalid ");
+			throw new Exception("Invalid Bus No");
 		}
 		
 		return BookingsService.getBusSheetDetails(busID);
 		
 	} 
 	
-	@GetMapping("/bookSheet")
-	public BusSheetingDetailDTO bookTicket( @RequestBody Long busID) throws Exception { //("busSearch")
+	@PostMapping("/bookSheet")
+	public BookingDTO bookTicket( @RequestBody BookingDTO bookingDTO) throws Exception { //("busSearch")
 
-		System.out.println(busID);
+		// need to add validation
 		
-		return BookingsService.getBusSheetDetails(busID);
+		return BookingsService.saveOrUpdateBooking(bookingDTO,false);
 		
 	} 
 	
+	@PostMapping("/cancelBooking")
+	public BookingDTO cancelTicket( @RequestBody BookingDTO bookingDTO) throws Exception { //("busSearch")
+
+		// need to add validation
+		
+		return BookingsService.saveOrUpdateBooking(bookingDTO,true);
+		
+	} 
 }

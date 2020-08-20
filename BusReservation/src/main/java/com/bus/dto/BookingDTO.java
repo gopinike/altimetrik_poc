@@ -1,24 +1,22 @@
 package com.bus.dto;
 
-import java.time.LocalDateTime;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-
 public class BookingDTO 
 {
 
+
+	private Long bookingId;
 	private Long busID;
 	private String sheetNo;
 	private String name;
 	private String mobileNumber;
 	private Integer status;
 	
+	public Long getBookingId() {
+		return bookingId;
+	}
+	public void setBookingId(Long bookingId) {
+		this.bookingId = bookingId;
+	}
 	public Long getBusID() {
 		return busID;
 	}
@@ -52,7 +50,7 @@ public class BookingDTO
 	
 	@Override
 	public String toString() {
-		return "BookingEntity [busID=" + busID + ", sheetNo=" + sheetNo + ", name=" + name
+		return "BookingEntity [bookingId=" + bookingId + ", busID=" + busID + ", sheetNo=" + sheetNo + ", name=" + name
 				+ ", mobileNumber=" + mobileNumber + ", status=" + status + "]";
 	}	
 	
