@@ -26,8 +26,7 @@ public class BusController
 	private BusService busService;
 	
 	@RequestMapping("/search")
-	public Optional<BusSearchResultDTO> greeting(@Valid @RequestBody BusSearchDTO busSearchDTO, BindingResult bindingResult) throws Exception { //("busSearch")
-		System.out.println(busSearchDTO);
+	public Optional<BusSearchResultDTO> getBusList(@Valid @RequestBody BusSearchDTO busSearchDTO, BindingResult bindingResult) throws Exception { 
 		
 		if(bindingResult.hasErrors())
 		{

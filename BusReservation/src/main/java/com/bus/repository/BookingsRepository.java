@@ -16,7 +16,9 @@ import com.bus.entity.BusEntity;
 public interface BookingsRepository extends JpaRepository<BookingEntity, Long> 
 { 
 	List<BookingEntity> findAll();
+	
 	List<BookingEntity> findAllBybusID(Long busID);
+	
 	@Query(nativeQuery = true,value = "select s.sheetno as sheetno ,  b.status as status  from sheetings s left join bookings b on s.sheetno   = b.sheetno  where busid = 1")
 	List<BookingEntity> sourcustomSearch();
 }
