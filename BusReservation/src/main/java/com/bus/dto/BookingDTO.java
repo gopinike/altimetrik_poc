@@ -52,7 +52,7 @@ public class BookingDTO
 	
 	@Override
 	public String toString() {
-		return "BookingEntity [bookingId=" + bookingId + ", busID=" + busID + ", sheetNo=" + sheetNo + ", name=" + name
+		return "BookingEntity [busID=" + busID + ", sheetNo=" + sheetNo + ", name=" + name
 				+ ", mobileNumber=" + mobileNumber + ", status=" + status + "]";
 	}	
 	
